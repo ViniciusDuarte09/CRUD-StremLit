@@ -104,3 +104,47 @@ class User:
         except Exception as e:
             print(e)
             return []
+        
+    @staticmethod
+    def changeValues(id, column, value):
+
+        try:
+            con = db.connect()
+            cursor = con.cursor()
+
+            comando = "UPDATE users SET {} = \"{}\" WHERE id = {}".format(column, value, id)
+
+            cursor.execute(comando)
+            con.commit()
+
+            cursor.close()
+            con.close()
+
+            return True
+        
+        except Exception as e:
+
+            print(e)
+            return False
+        
+    @staticmethod
+    def userValue(id, column):
+
+        try:
+            con = db.connect()
+            cursor = con.cursor()
+
+            comando = "SELECT {} FROM users WHERE id = {}".format(column, id)
+
+            cursor.execute(comando)
+            value = cursor.fetchall()
+            
+
+            cursor.close()
+            con.close()
+
+            return value
+        
+        except Exception as e:
+            print(e)
+            return []
