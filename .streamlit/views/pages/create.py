@@ -18,7 +18,7 @@ with st.form("createR", clear_on_submit= True):
     nome = st.text_input("Nome: :material/badge:", max_chars= 40, placeholder= "Digite o nome:")
     email = st.text_input("E-Mail: :material/mail:", max_chars= 50, placeholder= "Digite o e-mail, ele deve ser único")
     prof = st.text_input("Profissão: :material/engineering:", max_chars= 30, placeholder= "Digite a profissão:")
-    dataNasc = st.date_input("Data de Nascimento :material/calendar_month:", min_value= "1930-01-01")
+    dataNasc = st.date_input("Data de Nascimento :material/calendar_month:", None, min_value= "1900-01-01", max_value= "today")
 
     sb = st.form_submit_button("Criar Registro", use_container_width= True, icon= ":material/person_add:")
 

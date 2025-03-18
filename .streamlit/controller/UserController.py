@@ -1,5 +1,6 @@
 import models.userCRUD as md
 import pandas as pd
+from email_validator import validate_email, EmailNotValidError
 
 class UserController:
 
@@ -35,3 +36,13 @@ class UserController:
     
         return False
     
+    @staticmethod
+    def emailValidation(email):
+        
+        try:
+            v = validate_email(email)
+
+            return True
+        
+        except EmailNotValidError:
+            return False

@@ -24,9 +24,80 @@ with st.form("updatef", clear_on_submit=True):
     nome = st.text_input("Nome: :material/badge:", max_chars= 40, placeholder= "Digite o nome: ")
     email = st.text_input("E-Mail: :material/mail:", max_chars= 50, placeholder= "Digite o e-mail: ")
     prof = st.text_input("Profissão: :material/engineering:", max_chars= 30, placeholder= "Digite a profissão: ")
-    dataNasc = st.date_input("Data: :material/calendar_month:")
+    dataNasc = st.date_input("Data: :material/calendar_month:", None, min_value= "1900-01-01", max_value= "today")
     
     sb = st.form_submit_button("Atualizar Dados :material/upgrade:")
 
     if sb:
-        print(nome)
+
+        if nome == "":
+            pass
+
+        else:
+            checkN = ct.UserController.checkName(nome)
+ 
+            if checkN == True:
+                st.warning("Nome já Existente")
+
+            else:
+                try:
+                    md.User.changeValues(id, "nome", nome)
+
+                except Exception as e:
+                    print(e)
+                    st.error("Erro ao Atualizar o Cadastro")
+
+                else:
+                    st.success("Nome do Registro Atualizado com sucesso!")
+                    
+
+        if email == "":
+            pass
+
+        else:
+            
+            checkE = ct.UserController.checkEmail(email)
+
+            if checkE == True:
+                st.warning("Email já cadastrado")
+
+            else:
+                try:
+                    md.User.changeValues(id, "email", email)
+
+                except Exception as e:
+                    print(e)
+                    st.error("Erro ao Atualizar o Cadastro")
+
+                else:
+                    st.success("Email do Registro Atualizado com sucesso!")
+                    
+        
+        if prof == "":
+            pass
+        
+        else:
+                try:
+                    md.User.changeValues(id, "profissao", prof)
+
+                except Exception as e:
+                    print(e)
+                    st.error("Erro ao Atualizar o Cadastro")
+
+                else:
+                    st.success("Profissao Atualizada com sucesso!")
+
+        if dataNasc is None:
+            pass
+        
+        else:
+                try:
+                    md.User.changeValues(id, "data_nasc", dataNasc)
+
+                except Exception as e:
+                    print(e)
+                    st.error("Erro ao Atualizar o Cadastro")
+
+                else:
+                    st.success("Data de Nascimento atualizada com sucesso!")
+                    
