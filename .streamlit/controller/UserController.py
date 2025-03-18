@@ -12,12 +12,24 @@ class UserController:
         return result
     
     @staticmethod
-    def checkValues(name, email):
+    def checkName(name):
 
         df = md.User.allUsersData()
 
         for user in df:
-            if name == user[1] or email == user[4]:
+            if name == user[1]:
+                return True
+
+    
+        return False
+    
+    @staticmethod
+    def checkEmail(email):
+
+        df = md.User.allUsersData()
+
+        for user in df:
+            if email == user[4]:
                 return True
 
     

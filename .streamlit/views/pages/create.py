@@ -23,9 +23,10 @@ with st.form("createR", clear_on_submit= True):
     sb = st.form_submit_button("Criar Registro", use_container_width= True, icon= ":material/person_add:")
 
     if sb:
-        check = UserController.checkValues(nome, email)
+        checkN = UserController.checkName(nome)
+        checkE = UserController.checkEmail(email)
 
-        if check == True:
+        if checkN == True or checkE == True:
             st.warning("Nome ou E-mail Já Existentes")
 
         else:
