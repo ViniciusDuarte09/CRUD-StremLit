@@ -11,7 +11,22 @@ st.write("A funcionalidade de atualização permite modificar os dados dos usuá
 
 st.divider()
 
-st.selectbox(
-    "Teste",
-    md.User.labelId()
-)
+with st.form("updatef", clear_on_submit=True):
+    
+    with st.container(border= True):
+        st.write("Caso deseje atualizar as informações de um usuário, selecione um ID existente na lista e preencha os campos com os novos valores. **Se não quiser alterar um campo específico, basta deixá-lo em branco, e o valor atual será mantido**. Após preencher os dados desejados, clique no botão de atualização para salvar as mudanças.")
+
+    id = st.selectbox(
+        "Id do Registro :material/badge:",
+        md.User.labelId()
+    )
+
+    nome = st.text_input("Nome: :material/badge:", max_chars= 40, placeholder= "Digite o nome: ")
+    email = st.text_input("E-Mail: :material/mail:", max_chars= 50, placeholder= "Digite o e-mail: ")
+    prof = st.text_input("Profissão: :material/engineering:", max_chars= 30, placeholder= "Digite a profissão: ")
+    dataNasc = st.date_input("Data: :material/calendar_month:")
+    
+    sb = st.form_submit_button("Atualizar Dados :material/upgrade:")
+
+    if sb:
+        print(nome)

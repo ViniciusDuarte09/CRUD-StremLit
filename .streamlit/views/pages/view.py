@@ -36,7 +36,7 @@ if name_search:
     else:
 
         try:
-            st.table(ct.UserController.viewTable(register))
+            st.dataframe(ct.UserController.viewTable(register), use_container_width= True)
 
         except:
             st.error("Ocorreu um erro ao gerar a tabela")

@@ -98,8 +98,7 @@ class User:
 
             for id in labelId:
                 ids.append(id[0])
-
-            print(ids)
+                
             return ids
 
         except Exception as e:
