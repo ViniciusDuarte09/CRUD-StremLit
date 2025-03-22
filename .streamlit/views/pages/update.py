@@ -62,16 +62,19 @@ with st.form("updatef", clear_on_submit=True):
                 st.warning("Email já cadastrado")
 
             else:
-                try:
-                    md.User.changeValues(id, "email", email)
+                if ct.UserController.emailValidation(email) == True:
+                    try:
+                        md.User.changeValues(id, "email", email)
 
-                except Exception as e:
-                    print(e)
-                    st.error("Erro ao Atualizar o Cadastro")
+                    except Exception as e:
+                        print(e)
+                        st.error("Erro ao Atualizar o Cadastro")
 
+                    else:
+                        st.success("Email do Registro Atualizado com sucesso!")
+                
                 else:
-                    st.success("Email do Registro Atualizado com sucesso!")
-                    
+                    st.warning("Email não Válido")
         
         if prof == "":
             pass
