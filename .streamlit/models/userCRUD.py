@@ -148,3 +148,25 @@ class User:
         except Exception as e:
             print(e)
             return []
+
+    @staticmethod
+    def deleteUser(id):
+
+        try:
+            con = db.connect()
+            cursor = con.cursor()
+
+            comando = "DELETE FROM users WHERE id = {}".format(id)
+
+            cursor.execute(comando)
+            con.commit()
+
+            cursor.close()
+            con.close()
+
+            return True
+        
+        except Exception as e:
+
+            print(e)
+            return False

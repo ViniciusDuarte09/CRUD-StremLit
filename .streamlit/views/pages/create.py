@@ -30,17 +30,21 @@ with st.form("createR", clear_on_submit= True):
             st.warning("Nome ou E-mail Já Existentes")
 
         else:
-            if UserController.emailValidation(email) == True:
-                try:
-                    md.User.createUser(nome, dataNasc, prof, email)
+            if nome != "" and email != "":
+                if UserController.emailValidation(email) == True:
+                    try:
+                        md.User.createUser(nome, dataNasc, prof, email)
 
-                except Exception as e:
-                    st.error("Erro ao Criar o Registro")
-                    print(e)
+                    except Exception as e:
+                        st.error("Erro ao Criar o Registro")
+                        print(e)
+
+                    else:
+                        st.success("Úsuario criado com sucesso")
 
                 else:
-                    st.success("Úsuario criado com sucesso")
+                    st.warning("Email não válido")
 
             else:
-                st.warning("Email não Válido")
+                st.warning("Nome ou E-mail não inseridos")
 
